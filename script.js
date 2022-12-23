@@ -3,13 +3,17 @@ const ELEMENTS_IDS = {
   gpsPositionY: 'gpsPositionY',
 }
 
-navigator.geolocation.watchPosition(
-  (position) => {
-    window.alert(JSON.stringify(position));
-    document.getElementById(ELEMENTS_IDS.gpsPositionX).textContent = position.coords.latitude;
-    document.getElementById(ELEMENTS_IDS.gpsPositionY).textContent = position.coords.longitude;
-  },
-  (error) => {
-    document.getElementById(ELEMENTS_IDS.gpsPositionX).textContent = error.message;
-  }
-);
+try {
+  navigator.geolocation.watchPosition(
+    (position) => {
+      window.alert(JSON.stringify(position));
+      document.getElementById(ELEMENTS_IDS.gpsPositionX).textContent = position.coords.latitude;
+      document.getElementById(ELEMENTS_IDS.gpsPositionY).textContent = position.coords.longitude;
+    },
+    (error) => {
+      document.getElementById(ELEMENTS_IDS.gpsPositionX).textContent = error.message;
+    }
+  );
+} catch (err) {
+  document.getElementById(ELEMENTS_IDS.gpsPositionX).textContent = err.message;
+}
