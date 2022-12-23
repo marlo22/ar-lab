@@ -6,7 +6,7 @@ const ELEMENTS_IDS = {
 }
 
 try {
-  navigator.geolocation.getCurrentPosition(
+  navigator.geolocation.watchPosition(
     (position) => {
       document.getElementById(ELEMENTS_IDS.gpsPositionX).textContent = position.coords.latitude;
       document.getElementById(ELEMENTS_IDS.gpsPositionY).textContent = position.coords.longitude;
