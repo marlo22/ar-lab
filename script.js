@@ -27,21 +27,22 @@ const setArObjectAttributes = (element, attributes) => {
 }
 
 const addArObject = (coordinate) => {
-  const aEntity = document.createElement('a-entity');
-  aEntity.setAttribute('data-test', '');
-  document.querySelector('a-scene').appendChild(aEntity);
+  // const aEntity = document.createElement('a-entity');
+  // aEntity.setAttribute('data-test', '');
+  // document.querySelector('a-scene').appendChild(aEntity);
 
-  setArObjectAttributes(aEntity, {
-    material: 'color: red',
-    geometry: 'primitive: box',
-    'gps-new-entity-place': `latitude: ${coordinate[0]}; longitude: ${coordinate[1]}`,
-    scale: '10 10 10'
-  });
+  // setArObjectAttributes(aEntity, {
+  //   material: 'color: red',
+  //   geometry: 'primitive: box',
+  //   'gps-new-entity-place': `latitude: ${coordinate[0]}; longitude: ${coordinate[1]}`,
+  //   scale: '10 10 10'
+  // });
+  document.querySelector('a-scene').insertAdjacentHTML('beforeEnd', `<a-entity material='color: red' geometry='primitive: box' gps-new-entity-place="latitude: ${coordinate[0]}; longitude: ${coordinate[1]}" scale="10 10 10"></a-entity>`);
 };
 
 document.getElementById(ELEMENTS_IDS.saveCoordsButton).addEventListener('click', () => {
   // document.querySelectorAll('a-entity').forEach((element) => element.remove()); // TOOD: Add remove of the previous entities.
 
-  const objectsCoords = document.getElementById(ELEMENTS_IDS.coordsInput).value;
-  objectsCoords.split(' ').forEach((coordinate) => addArObject(coordinate.split(',')))
+  const coordinate = document.getElementById(ELEMENTS_IDS.coordsInput).value;
+  if (coordinate) addArObject(coordinate.split(','));
 });
