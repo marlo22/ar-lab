@@ -6,4 +6,4 @@ const ELEMENTS_IDS = {
 navigator.geolocation.watchPosition((position) => {
   document.getElementById(ELEMENTS_IDS.gpsPositionX).textContent = position.coords.latitude;
   document.getElementById(ELEMENTS_IDS.gpsPositionY).textContent = position.coords.longitude;
-});
+}, (error) => window.alert(`ERROR: ${error.message}`));
