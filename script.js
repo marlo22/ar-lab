@@ -6,5 +6,5 @@ textAreaElement.addEventListener('change', (event) => {
 });
 
 buttonElement.addEventListener('click', () => {
-  location = `/viewer/index.html?d=${JSON.stringify(JSON.parse(textAreaElement.value))}`
+  location = `${location.href}viewer/index.html?d=${JSON.stringify(JSON.parse(textAreaElement.value))}`
 });
