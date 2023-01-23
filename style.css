@@ -1,10 +1,9 @@
-#toolbar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: royalblue;
-  z-index: 9999;
-  color: #fff;
-  padding: 1rem;
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form textarea {
+  height: 60vh;
+  margin-bottom: 5px;
 }

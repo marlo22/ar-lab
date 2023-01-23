@@ -1,25 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>AR lab</title>
-<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-<script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js'></script>
-<script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'></script>
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR lab</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
-    <a-camera gps-new-camera='gpsMinDistance: 5'></a-camera>
-  </a-scene>
-  <div id="toolbar">
-    <div>
-      Current position: <span id="gpsPositionX">X</span>, <span id="gpsPositionY">Y</span>
-    </div>
-    <div>
-      <input id="coordsInput" placeholder="X,Y" />
-      <button id="saveCoordsButton">Add POI</button>
-    </div>
+  <h1>GeoAR</h1>
+  <p>
+    Narzędzie generuje podgląd widoku AR dla GeoJSON'a określonego w polu formularza.
+  </p>
+  <div class="form">
+    <textarea>
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Siedziba firmy GIAP (Warszawa)"
+      },
+      "geometry": {
+        "coordinates": [
+          21.03601155041403,
+          52.15335924312478
+        ],
+        "type": "Point"
+      }
+    }
+  ]
+}
+    </textarea>
+    <button>Uruchom widok AR</button>
   </div>
+  <main>
+    <p>
+      Aby wyświetlić etykietę dla obiektu, w polu "properties" należy zdefiniować atrybut "name"
+      (w przeciwnym razie jako etykieta zostaną wyświetlone współrzędne punktu).
+    </p>
+
+    <p>
+      UWAGA! Na tę chwilę etykiety nie obsługują polskich znaków.
+    </p>
+    <p>
+      Aby szybko i wygodnie wygenerować GeoJSON można skorzystać z narzędzia
+      <a href="https://geojson.io" target="_blank">GeoJSON.io</a>.
+    </p>
+
+    <p>
+      Dodatkowo należy pamiętać, że GeoJSON musi być elementem typu "FeatureCollection" oraz o tym,
+      że obecnie dane przekazywane są przez URL, więc jeśli obiekt będzie zbyt obszerny, aplikacja nie zadziała
+      w prawidłowy sposób. W przyszłości rozbudowane obiekty GeoJSON będą obsługiwane poprzez pobranie ich
+      z zewnętrznego źródła.
+    </p>
+  </main>
   <script src="script.js"></script>
 </body>
 </html>
