@@ -24,11 +24,11 @@ window.onload = () => {
       const markerIconImage = document.createElement("a-image");
       markerIconImage.setAttribute("look-at", "[gps-new-camera]");
       markerIconImage.setAttribute("src", "../assets/locator.png");
-      markerIconImage.setAttribute("width", 6);
-      markerIconImage.setAttribute("height", 10);
+      markerIconImage.setAttribute("width", 4);
+      markerIconImage.setAttribute("height", 6);
       markerIconImage.setAttribute("position", {
         x: 0,
-        y: 7,
+        y: 4,
         z: 0,
       });
 
@@ -48,7 +48,7 @@ window.onload = () => {
         value: properties.name || `${longitude}, ${latitude}`,
         color: "#fff",
         align: "center",
-        width: 3.3,
+        width: 2,
       });
 
       compoundEntity.appendChild(labelPlane);
@@ -57,3 +57,13 @@ window.onload = () => {
     });
   });
 };
+
+navigator.geolocation.watchPosition(
+  ({ coords: { latitude, longitude, accuracy }}) => {
+    document.getElementById('lastPositionUpdate').innerText = new Date().toLocaleTimeString();
+    document.getElementById('currentPosition').innerText = `${latitude}, ${longitude}`;
+    document.getElementById('accuracy').innerText = `${accuracy}m`;
+  },
+  ({ message }) => {
+    window.alert(message);
+  });
